@@ -1,4 +1,4 @@
-DROP TABLE MEMBER PURGE;
+-- DROP TABLE MEMBER PURGE;
 
 CREATE TABLE MEMBER
 (
@@ -16,3 +16,21 @@ INSERT INTO MEMBER VALUES('하상오', 'sang12', '1234', 'h12@naver.com', '010-5
 INSERT INTO MEMBER VALUES('김빛나', 'light', '1234', 'yoon1@daum.net', '010-9999-1111', 1);
 
 SELECT * FROM MEMBER;
+SELECT
+    A.COLUMN_ID AS NO
+    , B.COMMENTS AS "논리명"
+    , A.COLUMN_NAME AS "물리명"
+    , A.DATA_TYPE AS "자료 형태"
+    , A.DATA_LENGTH AS "길이"
+    , DECODE(A.NULLABLE, 'N', 'No', 'Y', 'Yes') AS "Null 허용"
+    , '' AS "식별자"
+    , A.DATA_DEFAULT AS "기본값"
+    , B.COMMENTS AS "코멘트"
+FROM ALL_TAB_COLUMNS A
+    LEFT JOIN ALL_COL_COMMENTS B
+        ON A.OWNER = B.OWNER
+            AND A.TABLE_NAME = B.TABLE_NAME
+            AND A.COLUMN_NAME = B.COLUMN_NAME
+WHERE
+    A.TABLE_NAME LIKE 'MEMBER'
+ORDER BY A.COLUMN_ID;

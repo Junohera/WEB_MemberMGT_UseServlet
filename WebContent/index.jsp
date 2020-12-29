@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<!-- <a href="login.do"> login페이지로 이동</a> -->
+<% response.sendRedirect("login.do"); %>
 </body>
 </html>
