@@ -23,14 +23,14 @@
         <input type="submit" value="check">
     </form>
     <c:if test="${result == 1}">
-        ${userid}는 이미 사용중인 아이디입니다.
+        ${userid} is already.
         <script>
             opener.document.frm.userid.value = "";
             /* opener : 팝업창을 오픈한 주체 */
         </script>
     </c:if>
     <c:if test="${result == 0}">
-        ${userid}는 사용가능한 아이디입니다.
+        ${userid} is available.
         <input type="button" value="use" onclick="idok('${userid}');">
     </c:if>
 </body>

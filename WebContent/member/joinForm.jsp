@@ -8,27 +8,27 @@
 <script>
     function joinCheck() {
         if (document.frm.name.value.length == 0) {
-            alert("이름을 써주세요");
+            alert("Please enter your name");
             frm.name.focus();
             return false;
         }
         if (document.frm.userid.value.length < 4) {
-            alert("아이디는 네글자 이상이어야 합니다.");
+            alert("ID must be at least four characters");
             frm.userid.focus();
             return false;
         }
         if (document.frm.pwd.value.length == "") {
-            alert("암호는 반드시 입력되어야합니다.");
+            alert("Password must be entered.");
             frm.pwd.focus();
             return false;
         }
         if (document.frm.pwd.value != document.frm.pwd_check.value) {
-            alert("암호가 일치하지 않습니다.");
+            alert("Password do not match.");
             frm.pwd_check.focus();
             return false;
         }
         if (document.frm.reid.value != document.frm.userid.value) {
-            alert("중복체크 오류입니다.");
+            alert("This is a duplicate check error.");
             frm.userid.focus();
             return false;
         }
@@ -42,7 +42,7 @@
             userid란에 내용이 없으면 아이디를 먼저 입력하라고 메시지를 출력합니다.
         */
        if (document.frm.userid.value.length == 0) {
-           alert("아이디를 입력하세요");
+           alert("Please enter your ID");
            frm.userid.focus();
            return false;
        }
@@ -55,8 +55,8 @@
 </script>
 </head>
 <body>
-    <h2>회원 가입</h2>
-    '*' 표시 항목은 필수 입력 항목입니다.
+    <h2>sign up</h2>
+    Fields marked with'*' are required.
     <form method="POST" action="join.do" name="frm">
 	    <table>
 	        <tr>
@@ -83,7 +83,7 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>re pwd</td>
+	            <td>repwd</td>
 	            <td>
 	                <input type="password" name="pwd_check" id="pwd_check" size="20">
 	                *
@@ -105,17 +105,18 @@
 	            <td>grade</td>
 	            <td>
 	                <label for="admin_0">
-	                    <input type="radio" name="admin" value="0" id="admin_0" checked> 일반회원
+	                    <input type="radio" name="admin" value="0" id="admin_0" checked> user
 	                </label>
 	                <label for="admin_1">
-	                    <input type="radio" name="admin" value="1" id="admin_1"> 관리자
+	                    <input type="radio" name="admin" value="1" id="admin_1"> admin
 	                </label>
 	            </td>
 	        </tr>
 	        <tr>
 	            <td colspan="2">
 	                <input type="submit" value="send" onclick="return joinCheck();">
-	                <input type="reset" value="cancle">
+					<input type="reset" value="cancle">
+					<input type="button" value="back" onclick="location.href='login.do'">
 	            </td>
 	        </tr>
 	    </table>

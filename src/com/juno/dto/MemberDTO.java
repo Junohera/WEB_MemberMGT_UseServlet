@@ -10,7 +10,7 @@ public class MemberDTO {
     
 	@Override
 	public String toString() {
-		return "MemberDTO [name=" + name + ", userid=" + userid + ", email=" + email + ", phone=" + phone + ", admin="
+		return "MemberDTO [name=" + name + ", userid=" + userid + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone + ", admin="
 				+ admin + "]";
 	}
 	public String getName() {

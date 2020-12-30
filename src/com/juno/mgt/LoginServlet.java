@@ -66,17 +66,17 @@ public class LoginServlet extends HttpServlet {
 		// 3. 회원정보 중 패스워드를 전달받은 파라미터와 비교합니다.
 		// 4. 맞으면 로그인, 틀리면 다시 로그인폼으로 돌아갑니다.
 		if (member == null) {
-			request.setAttribute("message", "아이디가 존재하지 않습니다");
+			request.setAttribute("message", "id not found");
 		} else {
 			if (member.getPwd() != null) {
 				if (!member.getPwd().equals(pwd)) {
-					request.setAttribute("message", "비밀번호 불일치");
+					request.setAttribute("message", "password diff");
 				} else {
 					session.setAttribute("loginUser", member); // 멤버정보를 세션에 저장
 					url = "main.jsp";
 				}
 			} else {
-				request.setAttribute("message", "회원정보 오류 - 관리자에게 문의하세요.");
+				request.setAttribute("message", "invalid user info. call to admin");
 			}
 		}
 

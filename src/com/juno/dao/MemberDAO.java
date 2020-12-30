@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.juno.dto.MemberDTO;
 
@@ -118,6 +119,101 @@ public class MemberDAO {
 		}
 		
 		return result;
+	}
+
+
+	public int delete(String userid) {
+		int result = 0;
+		String sql = "DELETE FROM MEMBER WHERE USERID = ?";
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, uid, pass);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+
+			result = pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {e.printStackTrace();
+		} catch (SQLException e) {e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) con.close();
+				if (pstmt != null) pstmt.close();
+				if (rs != null) rs.close();
+			} catch (SQLException e) {e.printStackTrace();}
+		}
+		
+		return result;
+	}
+
+
+	public int update(MemberDTO member) {
+		int result = 0;
+		String sql = "UPDATE MEMBER SET"
+				+ " NAME = ?"
+				+ " , PWD = ?"
+				+ " , EMAIL = ?"
+				+ " , PHONE = ?"
+				+ " , ADMIN = ?"
+				+ " WHERE USERID = ?";
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, uid, pass);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getPwd());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getPhone());
+			pstmt.setInt(5, member.getAdmin());
+			pstmt.setString(6, member.getUserid());
+			result = pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {e.printStackTrace();
+		} catch (SQLException e) {e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) con.close();
+				if (pstmt != null) pstmt.close();
+				if (rs != null) rs.close();
+			} catch (SQLException e) {e.printStackTrace();}
+		}
+		return result;
+	}
+
+
+	public ArrayList<MemberDTO> selectAll() {
+		ArrayList<MemberDTO> memberList = new ArrayList<MemberDTO>();
+		
+		String sql = "SELECT * FROM MEMBER";
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, uid, pass);
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MemberDTO member = new MemberDTO();
+				member.setName(rs.getString("NAME"));
+				member.setUserid(rs.getString("USERID"));
+				member.setPwd(rs.getString("PWD"));
+				member.setEmail(rs.getString("EMAIL"));
+				member.setPhone(rs.getString("PHONE"));
+				member.setAdmin(rs.getInt("ADMIN"));
+				memberList.add(member);
+			}
+
+		} catch (ClassNotFoundException e) {e.printStackTrace();
+		} catch (SQLException e) {e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) con.close();
+				if (pstmt != null) pstmt.close();
+				if (rs != null) rs.close();
+			} catch (SQLException e) {e.printStackTrace();}
+		}
+		
+		return memberList;
 	}
 
 }
