@@ -35,7 +35,6 @@ public class IdCheckServlet extends HttpServlet {
 		int result = memberDAO.confirmId(userid); // userid를 보내고 아이디 사용가능을 정수형으로 반환
 		request.setAttribute("userid", userid);
 		request.setAttribute("result", result);
-		System.out.println(result);
 		RequestDispatcher dp = request.getRequestDispatcher("member/idcheck.jsp");
 		dp.forward(request, response); // 팝업창에 표시할 페이지 포워딩
 	}
