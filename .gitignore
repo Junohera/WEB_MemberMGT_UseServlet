@@ -3,6 +3,7 @@ bin/
 temp/
 .DS_Store
 copy/
-.settings
+.settings/
 /build/
 MANIFEST.MF
+*.class
