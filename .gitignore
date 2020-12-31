@@ -7,3 +7,4 @@ copy/
 /build/
 MANIFEST.MF
 *.class
+build/
