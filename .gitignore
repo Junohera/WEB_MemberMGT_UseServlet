@@ -4,7 +4,6 @@ temp/
 .DS_Store
 copy/
 .settings/
-/build/
+build/
 MANIFEST.MF
 *.class
-build/
